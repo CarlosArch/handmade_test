@@ -1,4 +1,4 @@
 @echo off
 pushd "debug"
-devenv win32_handmade.exe
+devenv win32_handler.exe
 popd

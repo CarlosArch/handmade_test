@@ -9,14 +9,14 @@ SET libs=
 :FINAL
     mkdir build
     pushd build
-    cl /FC ..\code\win32_handmade.c user32.lib gdi32.lib
+    cl /FC ..\code\win32_handler.c user32.lib gdi32.lib
     popd
     GOTO END
 
 :DEBUG
     mkdir debug
     pushd debug
-    cl /FC /Zi ..\code\win32_handmade.c user32.lib gdi32.lib
+    cl /FC /Zi ..\code\win32_handler.c user32.lib gdi32.lib
     popd
     GOTO END
 

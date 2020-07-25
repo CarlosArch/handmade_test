@@ -1,4 +1,4 @@
 @echo off
 pushd "build"
-win32_handmade.exe
+win32_handler.exe
 popd

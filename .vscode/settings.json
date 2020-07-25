@@ -3,6 +3,7 @@
         "/k misc\\shell.bat"
     ],
     "files.associations": {
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "win32_handler.h": "c"
     }
 }
