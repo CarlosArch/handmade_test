@@ -4,6 +4,11 @@
     ],
     "files.associations": {
         "stdint.h": "c",
-        "win32_handler.h": "c"
+        "win32_handler.h": "c",
+        "my_definitions.h": "c",
+        "windows.h": "c",
+        "my_xinput.h": "c",
+        "dsound.h": "c",
+        "my_dsound.h": "c"
     }
 }

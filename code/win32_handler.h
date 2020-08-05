@@ -22,3 +22,5 @@ LRESULT main_window_behavior(HWND, UINT, WPARAM, LPARAM);
 internal void allocate_bitmap(int, int);
 internal void update_window(HDC);
 internal void show_gradient(int, int);
+internal void show_blob(int, int);
+internal void play_square_wave(int);
