@@ -11,11 +11,10 @@ global MY_BITMAP bitmap;
 global LPDIRECTSOUNDBUFFER sound_buffer;
 global uint8 up, down, left, right;
 
-int WinMain(
-        HINSTANCE instance,
-        HINSTANCE prev_instance,
-        LPSTR     command_line,
-        int       showcode)
+int WinMain(HINSTANCE instance,
+            HINSTANCE prev_instance,
+            LPSTR     command_line,
+            int       showcode)
 {
     { // Load controller support if possible
         load_xinput();
@@ -65,6 +64,7 @@ int WinMain(
             /* bits_per_sample */    BITS_PER_SAMPLE,
             /* buffer_size */        AUDIO_BUFFER_SIZE
         );
+
         IDirectSoundBuffer_Play(sound_buffer, 0, 0, DSBPLAY_LOOPING);
     }
     MSG message;
@@ -76,7 +76,8 @@ int WinMain(
             DispatchMessageA(&message);
         }
         for (int index = 0; index < XUSER_MAX_COUNT; index++)
-        {
+
+        { // Get controllers if connected.
             XINPUT_STATE state = {0};
             if (XInputGetState(index, &state) == NO_ERROR)
             {
@@ -105,11 +106,10 @@ int WinMain(
     return message.wParam;
 }
 
-LRESULT main_window_behavior(
-        HWND window_handle,
-        UINT message,
-        WPARAM w_param,
-        LPARAM l_param)
+LRESULT main_window_behavior(HWND window_handle,
+                             UINT message,
+                             WPARAM w_param,
+                             LPARAM l_param)
 {
     LRESULT result = 0;
     switch (message)
@@ -119,6 +119,7 @@ LRESULT main_window_behavior(
             OutputDebugStringA("Exiting Application.\n");
             quit = 1;
         } break;
+
         case WM_SYSKEYDOWN: case WM_KEYDOWN:
         case WM_SYSKEYUP:   case WM_KEYUP:
         {
@@ -147,16 +148,19 @@ LRESULT main_window_behavior(
                 }
             }
         } break;
+
         case WM_SIZE:
         {
             RECT client_rect; GetClientRect(window_handle, &client_rect);
             window.width = client_rect.right - client_rect.left;
             window.height = client_rect.bottom - client_rect.top;
         } break;
+
         case WM_ACTIVATEAPP:
         {
             OutputDebugStringA("WM_ACTIVATEAPP\n");
         } break;
+
         case WM_PAINT:
         {
             PAINTSTRUCT paint;
@@ -164,6 +168,7 @@ LRESULT main_window_behavior(
             update_window(device_context);
             EndPaint(window_handle, &paint);
         } break;
+
         default:
         {
             result = DefWindowProcA(window_handle, message, w_param, l_param);
@@ -308,21 +313,3 @@ internal void play_square_wave(int tone)
         &audio_block_2, audio_bytes_2
     );
 }
-// WinMain defines the program's entry point.
-// https://docs.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-winmain
-
-// Windows:
-    // WNDCLASSEX means window class, contains info on how to create the window.
-    // https://docs.microsoft.com/en-us/windows/win32/api/winuser/ns-winuser-wndclassexa
-    // Window Style.
-    // https://docs.microsoft.com/en-us/windows/win32/winmsg/window-class-styles
-    // Window procedure, function called when window events happen.
-    // https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-callwindowproca
-    // Registering class after it's defined:
-    // https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-registerclassexa
-
-    // Window Procedure: handles window events.
-    // https://docs.microsoft.com/en-us/previous-versions/windows/desktop/legacy/ms633573(v=vs.85)
-
-    // Creating the window
-    // https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-createwindowexa
