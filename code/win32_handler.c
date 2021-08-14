@@ -90,16 +90,17 @@ int WinMain(HINSTANCE instance,
         }
         { // This is very bad code.
             //play_square_wave(500);
-            play_square_wave(250);
+            //play_square_wave(250);
 
-            int16 x, y;
-            x -= left; x += right;
-            y -= up;   y += down;
-            if (y > (180-4)*8) y = (180-4)*8;
-            if (y < 0) y = 0;
-            if (x > (240-4)*8) x = (240-4)*8;
-            if (x < 0) x = 0;
-            show_blob(x/8, y/8);
+            // int16 x, y;
+            // x -= left; x += right;
+            // y -= up;   y += down;
+            // if (y > (180-4)*8) y = (180-4)*8;
+            // if (y < 0) y = 0;
+            // if (x > (240-4)*8) x = (240-4)*8;
+            // if (x < 0) x = 0;
+            // show_blob(x/8, y/8);
+            show_gradient(0,0);
             update_window(window.device_context);
         }
     }
