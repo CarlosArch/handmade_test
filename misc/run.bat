@@ -1,4 +1,4 @@
 @echo off
-pushd "build"
+pushd "..\build"
 win32_handler.exe
 popd
